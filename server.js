@@ -40,32 +40,7 @@ client.on('ready', () => {
             type: "WATCHING"
         }
     })
-    /*  
-      let archivos = fs.readdirSync('./commands').filter((f) => f.endsWith('.js'));
-      console.log('=======================================================');
-
-    for(var archi of archivos) {
-    //  let comando = require('./comandos/'+archi);
-      //client.comandos.set(comando.nombre, comando);
-      console.log(archi);
-    };
-      */
 });
-/*
-        giveaways.launch(client, {
-        updateCountdownEvery: 20000,
-        botsCanWin: false,
-        ignoreIfHasPermission: [
-            "MANAGE_MESSAGES",
-            "MANAGE_GUILD",
-            "ADMINISTRATOR"
-        ],
-        embedColor: "#7289D9",
-        reaction: "🎉",
-        storage: __dirname+"/giveaways.json"
-    });
-});
-*/
 
 function T_convertor(ms) {
     let años = Math.floor((ms) / (1000 * 60 * 60 * 24 * 365));
@@ -96,65 +71,7 @@ db.prepare(`CREATE TABLE IF NOT EXISTS user_confi (idusuario TEXT, afk_motivo TE
 db.prepare("CREATE TABLE IF NOT EXISTS lista_blanca_automod (idserver TEXT, canal TEXT)").run();
 db.prepare("CREATE TABLE IF NOT EXISTS warns (idserver TEXT,idusuario TEXT,motivo TEXT,dia TEXT,mod TEXT)").run();
 db.prepare("CREATE TABLE IF NOT EXISTS dbmigrar (idserver TEXT,idusuario TEXT)").run();
-
 db.prepare("CREATE TABLE IF NOT EXISTS cooldown (idserver TEXT,idusuario TEXT, cooldowncom TEXT, cooldownniv TEXT)").run();
-
-/*
-  db.prepare("ALTER TABLE personalizar_comandos ADD advertencias_max TEXT").run();
-  db.prepare("ALTER TABLE personalizar_comandos ADD advertencias_flood TEXT").run();
-  db.prepare("ALTER TABLE personalizar_comandos ADD advertencias_inv TEXT").run();
-  db.prepare("ALTER TABLE personalizar_comandos ADD advertencias_men TEXT").run();
-
-/*
-
-  db.prepare("ALTER TABLE personalizar_comandos ADD monedas_ahorcado TEXT").run();
-  db.prepare("ALTER TABLE personalizar_comandos ADD monedas_pacman TEXT").run();
-
-  db.prepare("ALTER TABLE personalizar_comandos ADD max_xp_niv TEXT").run();
-  db.prepare("ALTER TABLE personalizar_comandos ADD min_xp_niv TEXT").run();
-  db.prepare("ALTER TABLE personalizar_comandos ADD tiempo_niv TEXT").run();
-
-advertencias_max
-/*
-
-  db.prepare("ALTER TABLE personalizar_comandos ADD canalsugerencias TEXT").run();
-  db.prepare("ALTER TABLE activar_desactivar ADD COLUMN log INTEGER").run();
-  db.prepare("ALTER TABLE personalizar_comandos ADD colorembed TEXT").run();
-  db.prepare("ALTER TABLE personalizar_comandos ADD prefix TEXT").run();
-  db.prepare("ALTER TABLE personalizar_comandos ADD canalautomod TEXT").run();
-  db.prepare("ALTER TABLE personalizar_comandos ADD config_nombre TEXT").run();
-  db.prepare("ALTER TABLE personalizar_comandos ADD canal_entrada1 TEXT").run();
-  db.prepare("ALTER TABLE personalizar_comandos ADD texto_entrada1 TEXT").run();
-  db.prepare("ALTER TABLE personalizar_comandos ADD canal_entrada2 TEXT").run();
-  db.prepare("ALTER TABLE personalizar_comandos ADD canal_entrada3 TEXT").run();
-  db.prepare("ALTER TABLE personalizar_comandos ADD canal_entrada4 TEXT").run();
-  db.prepare("ALTER TABLE personalizar_comandos ADD canal_salida1 TEXT").run();
-  db.prepare("ALTER TABLE personalizar_comandos ADD texto_salida1 TEXT").run();
-  db.prepare("ALTER TABLE personalizar_comandos ADD canal_salida2 TEXT").run();
-  db.prepare("ALTER TABLE personalizar_comandos ADD canal_salida3 TEXT").run();
-  db.prepare("ALTER TABLE personalizar_comandos ADD canal_salida4 TEXT").run();
-  db.prepare("ALTER TABLE personalizar_comandos ADD crime_max TEXT").run();
-  db.prepare("ALTER TABLE personalizar_comandos ADD crime_min TEXT").run();
-  db.prepare("ALTER TABLE personalizar_comandos ADD crime_msgV TEXT").run();
-  db.prepare("ALTER TABLE personalizar_comandos ADD crime_msgD TEXT").run();
-  db.prepare("ALTER TABLE personalizar_comandos ADD crime_tiempo TEXT").run();
-  db.prepare("ALTER TABLE personalizar_comandos ADD trabajar_max TEXT").run();
-  db.prepare("ALTER TABLE personalizar_comandos ADD trabajar_min TEXT").run();
-  db.prepare("ALTER TABLE personalizar_comandos ADD trabajar_msg TEXT").run();
-  db.prepare("ALTER TABLE personalizar_comandos ADD trabajar_tiempo TEXT").run();
-  db.prepare("ALTER TABLE personalizar_comandos ADD log_canal TEXT").run();
-  db.prepare("ALTER TABLE personalizar_comandos ADD entrada3_color TEXT").run();
-  db.prepare("ALTER TABLE personalizar_comandos ADD entrada3_titulo TEXT").run();
-  db.prepare("ALTER TABLE personalizar_comandos ADD entrada3_descripcion TEXT").run();
-  db.prepare("ALTER TABLE personalizar_comandos ADD entrada3_fondo TEXT").run();
-  db.prepare("ALTER TABLE personalizar_comandos ADD salida3_color TEXT").run();
-  db.prepare("ALTER TABLE personalizar_comandos ADD salida3_titulo TEXT").run();
-  db.prepare("ALTER TABLE personalizar_comandos ADD salida3_descripcion TEXT").run();
-  db.prepare("ALTER TABLE personalizar_comandos ADD salida3_fondo TEXT").run();
-  db.prepare("ALTER TABLE personalizar_comandos ADD entrada4_texto TEXT").run();
-  db.prepare("ALTER TABLE personalizar_comandos ADD salida4_texto TEXT").run();
-  */
-
 
 
 client.on("guildCreate", (guild) => {
@@ -178,17 +95,6 @@ client.on("guildCreate", (guild) => {
     embed.setDescription("**Hola me presento, soy Sad Bot.** \n \n Soy un bot que tiene como objetivo facilitar a los usuarios su estancia en el servidor, si desea ver mis comandos tan sólo escriba ``??ayuda`` y le atenderé con mucho gusto. ^^")
     return upchan.send(embed)
 });
-
-/*
-1) crear una variable vacía
-2) hacer un loop usando un for o forEach
-3) dentro del loop verificar si el tipo del canal es texto, de lo contrario no hacer nada y pasar al siguiente
-4) en la primera iteración verificar si la variable está vacía, si se encuentra vacía almacenamos el canal en la variable.
-5) si la variable no esta vacía deberás crear una verificación de posiciones del canal iterado en ese momento con el canal guardado en la variable (usas el <canal>.position para verificar.
-Si la posición del canal iterado es mayor a la posición del canal guardado en la variable, la variable deberá tomar como nuevo valor al canal iterado.
-6) resultado final = el canal que est arriba del todo.
-*/
-
 
 client.on("guildMemberRemove", member => {
     let modosalida = db.prepare(`SELECT salida1 FROM activar_desactivar WHERE idserver = ${member.guild.id}`).get();
@@ -253,8 +159,7 @@ client.on("guildMemberRemove", async member => {
     } else {
         textodes = dbtexto.salida4_texto;
     };
-    //  if(!textosalida4.tiene(`${member.guild.id}.lista_links`)) textodes = `Se fue ${usuario}`
-    //   if(textosalida4.tiene(`${member.guild.id}.lista_links`)) textodes = await textosalida4.obtener(`${member.guild.id}.lista_links`)
+
     textodes = textodes.replace(/{usuario}/g, `${member.user.username }`);
     textodes = textodes.replace(/{servidor}/g, `${member.guild.name}`);
     return canal.send(textodes)
@@ -370,17 +275,6 @@ client.on("guildMemberAdd", async member => {
         files: [img]
     });
 })
-/*.catch(error => {
-       if(!welcome_db3.tiene(`${member.guild.id}`)) return;
-   welcome_db3.obtener(`${member.guild.id}`).then(async canal_id => {
-let canal = member.guild.channels.get(canal_id)
-if(!canal) return;
-     member.guild.channels.get(canal.id).send(error.message)
-  });
-});
-*/
-
-
 
 client.on("guildMemberRemove", async member => {
 
@@ -450,14 +344,6 @@ client.on("guildMemberRemove", async member => {
         files: [img]
     })
 })
-/*.catch(error => {
-       if(!goodbye_db3.tiene(`${member.guild.id}`)) return;
-   goodbye_db3.obtener(`${member.guild.id}`).then(async canal_id => {
-let canal = member.guild.channels.get(canal_id);
-if(!canal) return;
-     member.guild.channels.get(canal.id).send(error.message);
-   });
-});*/
 
 
 client.on("guildMemberAdd", (member) => {
@@ -476,10 +362,6 @@ client.on("guildMemberAdd", (member) => {
         .setTimestamp()
     return canal.send(embed);
 });
-/*.catch(error => {
-     console.log(error)
-   }) 
-});  */
 
 client.on("guildMemberAdd", member => {
 
@@ -505,9 +387,6 @@ client.on("guildMemberAdd", member => {
         .setDescription(mensaje)
     return canal.send(embed)
 })
-/*.catch(error => {
-     console.log(error)
-});  */
 
 client.on('voiceStateUpdate', async (oldState, newState) => {
 
@@ -533,40 +412,6 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
             .setDescription("**" + oldState.member.user.username + "** ha salido del canal, **" + oldState.channel.name + "**.");
         canal.send(embed);
     };
-    /*
-    if(oldState.channelID !== newState.channelID) {
-      let embed = new Discord.MessageEmbed() 
-      .setColor("50d643")
-    //  .setThumbnail(logs.entries.first().executor.displayAvatarURL())
- //     .setTitle(":arrow_right: Nueva entrada a canal de voz detectado")
-      .setDescription(newState.user +'    ha entrado en '+ newState   .name +' !')
-      canal.send(embed)
-    }
-     /*
-           let embed = new Discord.MessageEmbed() 
-            .setColor("ffa700")
-            .setThumbnail(logs.entries.first().executor.displayAvatarURL())
-            .setTitle(":left_right_arrow: Nuevo cambio de canal de voz detectado")
-            .setDescription(newState.user + " ha salido del canal, '" + oldVoiceChannel.name + "' y se ha unido en '" + voiceChannel.name + "'!");
-            canal.send(embed)
-/*
-        }else {
-            let embed = new Discord.MessageEmbed() 
-            .setColor("50d643")
-            .setThumbnail(logs.entries.first().executor.displayAvatarURL())
-            .setTitle(":arrow_right: Nueva entrada a canal de voz detectado")
-            .setDescription(newState.user +'    ha entrado en '+ voiceChannel.name +' !')
-            canal.send(embed)
-        }
-    }
-    else if (oldVoiceChannel){
-           let embed = new Discord.MessageEmbed() 
-            .setColor("ff0000")
-            .setThumbnail(logs.entries.first().executor.displayAvatarURL())
-            .setTitle(":arrow_left: Nueva salida a canal de voz detectado")
-            .setDescription(newState.user +'    ha salido de '+ oldVoiceChannel.name +'!')
-            canal.send(embed)
-    }*/
 });
 
 
@@ -868,19 +713,6 @@ client.on("message", async message => {
     let args = message.content.slice(prefix.length).trim().split(' ');
     let command = args.shift().toLowerCase();
 
-    /*
-    if(cooldown.has(message.guild.id+message.author.id)) {
-    let valorcooldown = cooldown.get(message.guild.id+message.author.id);
-      if(Date.now() < valorcooldown) {
-        return; // console.log("timeout");
-      };
-    };
-  
-//    db.prepare("CREATE TABLE IF NOT EXISTS cooldown (idserver TEXT,idusuario TEXT, datenow TEXT)").run();
-*/
-
-    //  console.log(db.prepare(`SELECT datenow FROM cooldown WHERE idserver = ${message.guild.id} AND idusuario = ${message.author.id}`).get())
-
     if (!message.content.startsWith(prefix)) {
 
         if (onoff) {
@@ -1014,9 +846,6 @@ client.on("message", async message => {
 
                     console.log("tiempofinal " + tiempofinal)
 
-//                  db.prepare("CREATE TABLE IF NOT EXISTS cooldown (idserver TEXT,idusuario TEXT, cooldowncom TEXT, cooldownniv TEXT)").run();
-
-                  
                     if (!cooldowndb) {
                         db.prepare(`INSERT INTO cooldown(idserver, idusuario, cooldownniv) VALUES(${message.guild.id}, ${message.author.id},${Date.now() + parseInt(tiempofinal)})`).run();
                     } else {
@@ -1033,502 +862,6 @@ client.on("message", async message => {
 
 
     if (!message.content.startsWith(prefix)) return;
-
-    /*
-  if(message.content.startsWith(prefix)) {
-
-    let migrar = db.prepare(`SELECT * FROM dbmigrar WHERE idserver = ${message.guild.id}`).get();
-    let migraruser = db.prepare(`SELECT idusuario FROM dbmigrar WHERE idserver = ${message.guild.id} AND idusuario = ${message.author.id}`).get();
-    
-  if(!migrar){
-
-    let servidor = message.guild.id;
-    let usuario = message.author.id;
-
-    let acdesdb = db.prepare(`SELECT * FROM activar_desactivar WHERE idserver = ${message.guild.id}`).get();
-    let percomdb = db.prepare(`SELECT * FROM personalizar_comandos WHERE idserver = ${message.guild.id}`).get();
-
-    if(antispam_act_des.tiene(servidor)){
-      if(await antispam_act_des.obtener(servidor) == "on"){
-
-      if(!acdesdb){
-        db.prepare(`INSERT INTO activar_desactivar(idserver, automod) VALUES(${message.guild.id}, ${1})`).run();
-        acdesdb = db.prepare(`SELECT * FROM activar_desactivar WHERE idserver = ${message.guild.id}`).get();
-      }else{
-        db.prepare(`UPDATE activar_desactivar SET automod = ${1} WHERE idserver = ${message.guild.id}`).run();
-      };
-      antispam_act_des.eliminar(servidor);
-     };
-    };
-    if(antispam_canal.tiene(servidor)){
-      let canalid = await antispam_canal.obtener(servidor);
-      if(!percomdb){
-        db.prepare(`INSERT INTO personalizar_comandos(idserver, canalautomod) VALUES(${message.guild.id}, ${canalid})`).run();
-        percomdb = db.prepare(`SELECT * FROM personalizar_comandos WHERE idserver = ${message.guild.id}`).get();
-      }else{
-        db.prepare(`UPDATE personalizar_comandos SET canalautomod = ${canalid} WHERE idserver = ${message.guild.id}`).run();
-      };
-      antispam_canal.eliminar(servidor)
-    };
-    if(welcome_db.tiene(servidor)){
-      let canalid = await welcome_db.obtener(servidor);
-      if(!percomdb){
-        db.prepare(`INSERT INTO personalizar_comandos(idserver, canal_entrada1) VALUES(${message.guild.id}, ${canalid})`).run();
-        percomdb = db.prepare(`SELECT * FROM personalizar_comandos WHERE idserver = ${message.guild.id}`).get();
-      }else{
-        db.prepare(`UPDATE personalizar_comandos SET canal_entrada1 = ${canalid} WHERE idserver = ${message.guild.id}`).run();
-      };
-      welcome_db.eliminar(servidor)
-    };
-    if(welcome_db2.tiene(servidor)){
-      let canalid = await welcome_db2.obtener(servidor);
-      if(!percomdb){
-        db.prepare(`INSERT INTO personalizar_comandos(idserver, canal_entrada2) VALUES(${message.guild.id}, ${canalid})`).run();
-        percomdb = db.prepare(`SELECT * FROM personalizar_comandos WHERE idserver = ${message.guild.id}`).get();
-      }else{
-        db.prepare(`UPDATE personalizar_comandos SET canal_entrada2 = ${canalid} WHERE idserver = ${message.guild.id}`).run();
-      };
-      welcome_db2.eliminar(servidor)
-    };
-    if(welcome_db3.tiene(servidor)){
-      let canalid = await welcome_db3.obtener(servidor);
-      if(!percomdb){
-        db.prepare(`INSERT INTO personalizar_comandos(idserver, canal_entrada3) VALUES(${message.guild.id}, ${canalid})`).run();
-        percomdb = db.prepare(`SELECT * FROM personalizar_comandos WHERE idserver = ${message.guild.id}`).get();
-      }else{
-        db.prepare(`UPDATE personalizar_comandos SET canal_entrada3 = ${canalid} WHERE idserver = ${message.guild.id}`).run();
-      };
-      welcome_db3.eliminar(servidor);
-    };
-    if(welcome_db4.tiene(servidor)){
-      let canalid = await welcome_db4.obtener(servidor);
-      if(!percomdb){
-        db.prepare(`INSERT INTO personalizar_comandos(idserver, canal_entrada4) VALUES(${message.guild.id}, ${canalid})`).run();
-        percomdb = db.prepare(`SELECT * FROM personalizar_comandos WHERE idserver = ${message.guild.id}`).get();
-      }else{
-        db.prepare(`UPDATE personalizar_comandos SET canal_entrada4 = ${canalid} WHERE idserver = ${message.guild.id}`).run();
-      };
-      welcome_db4.eliminar(servidor);
-    };  
-    if(canal_niv.tiene(servidor)){
-      let canalid = await canal_niv.obtener(servidor);
-      if(!percomdb){
-        db.prepare(`INSERT INTO personalizar_comandos(idserver, canal_niv) VALUES(${message.guild.id}, ${canalid})`).run();
-        percomdb = db.prepare(`SELECT * FROM personalizar_comandos WHERE idserver = ${message.guild.id}`).get();
-      }else{
-        db.prepare(`UPDATE personalizar_comandos SET canal_niv = ${canalid} WHERE idserver = ${message.guild.id}`).run();
-      };
-      canal_niv.eliminar(servidor);
-    };
-    if(color_entrada.tiene(`${servidor}.lista_color`)){
-      let color = await color_entrada.obtener(`${servidor}.lista_color`);
-      if(!percomdb){
-        db.prepare(`INSERT INTO personalizar_comandos(idserver, entrada3_color) VALUES(${message.guild.id}, '${color}')`).run();
-        percomdb = db.prepare(`SELECT * FROM personalizar_comandos WHERE idserver = ${message.guild.id}`).get();
-      }else{
-        db.prepare(`UPDATE personalizar_comandos SET entrada3_color = '${color}' WHERE idserver = ${message.guild.id}`).run();
-      };
-      color_entrada.eliminar(`${servidor}.lista_color`);
-    };
-    if(color_salida.tiene(`${servidor}.lista_color`)){
-      let color = await color_salida.obtener(`${servidor}.lista_color`);
-      if(!percomdb){
-        db.prepare(`INSERT INTO personalizar_comandos(idserver, salida3_color) VALUES(${message.guild.id}, '${color}')`).run();
-        percomdb = db.prepare(`SELECT * FROM personalizar_comandos WHERE idserver = ${message.guild.id}`).get();
-      }else{
-        db.prepare(`UPDATE personalizar_comandos SET salida3_color = '${color}' WHERE idserver = ${message.guild.id}`).run();
-      };
-      color_salida.eliminar(`${servidor}.lista_color`);
-    };
-    if(crime_max_min.tiene(`${servidor}.Max`)){
-      let max = await crime_max_min.obtener(`${servidor}.Max`);
-      if(!percomdb){
-        db.prepare(`INSERT INTO personalizar_comandos(idserver, crime_max) VALUES(${message.guild.id}, ${max})`).run();
-        percomdb = db.prepare(`SELECT * FROM personalizar_comandos WHERE idserver = ${message.guild.id}`).get();
-      }else{
-        db.prepare(`UPDATE personalizar_comandos SET crime_max = ${max} WHERE idserver = ${message.guild.id}`).run();
-      };
-    };
-    if(crime_max_min.tiene(`${servidor}.Min`)){
-      let min = await crime_max_min.obtener(`${servidor}.Min`);
-      if(!percomdb){
-        db.prepare(`INSERT INTO personalizar_comandos(idserver, crime_min) VALUES(${message.guild.id}, ${min})`).run();
-        percomdb = db.prepare(`SELECT * FROM personalizar_comandos WHERE idserver = ${message.guild.id}`).get();
-      }else{
-        db.prepare(`UPDATE personalizar_comandos SET crime_min = ${min} WHERE idserver = ${message.guild.id}`).run();
-      };
-      crime_max_min.eliminar(servidor);
-    };
-    if(crime_msg.tiene(`${servidor}.V`)){
-      let msgV = await crime_msg.obtener(`${servidor}.V`);
-      if(!percomdb){
-        db.prepare(`INSERT INTO personalizar_comandos(idserver, crime_msgV) VALUES(${message.guild.id}, '${msgV}')`).run();
-        percomdb = db.prepare(`SELECT * FROM personalizar_comandos WHERE idserver = ${message.guild.id}`).get();
-      }else{
-        db.prepare(`UPDATE personalizar_comandos SET crime_msgV = '${msgV}' WHERE idserver = ${message.guild.id}`).run();
-      };
-    };
-    if(crime_msg.tiene(`${servidor}.D`)){
-      let msgD = await crime_msg.obtener(`${servidor}.D`);
-      if(!percomdb){
-        db.prepare(`INSERT INTO personalizar_comandos(idserver, crime_msgD) VALUES(${message.guild.id}, '${msgD}')`).run();
-        percomdb = db.prepare(`SELECT * FROM personalizar_comandos WHERE idserver = ${message.guild.id}`).get();
-      }else{
-        db.prepare(`UPDATE personalizar_comandos SET crime_msgD = '${msgD}' WHERE idserver = ${message.guild.id}`).run();
-      };
-      crime_msg.eliminar(servidor);
-    };
-    if(crime_tiempo.tiene(`${servidor}`)){
-      let tiempo = await crime_tiempo.obtener(`${servidor}`);
-      if(!percomdb){
-        db.prepare(`INSERT INTO personalizar_comandos(idserver, crime_tiempo) VALUES(${message.guild.id}, ${tiempo})`).run();
-        percomdb = db.prepare(`SELECT * FROM personalizar_comandos WHERE idserver = ${message.guild.id}`).get();
-      }else{
-        db.prepare(`UPDATE personalizar_comandos SET crime_tiempo = ${tiempo} WHERE idserver = ${message.guild.id}`).run();
-      };
-      crime_tiempo.eliminar(servidor);
-    };
-    if(desc_entrada.tiene(`${servidor}.lista_desc`)){
-      let textoDesc = await desc_entrada.obtener(`${servidor}.lista_desc`);
-      if(!percomdb){
-        db.prepare(`INSERT INTO personalizar_comandos(idserver, entrada3_descripcion) VALUES(${message.guild.id}, '${textoDesc}')`).run();
-        percomdb = db.prepare(`SELECT * FROM personalizar_comandos WHERE idserver = ${message.guild.id}`).get();
-      }else{
-        db.prepare(`UPDATE personalizar_comandos SET entrada3_descripcion = '${textoDesc}' WHERE idserver = ${message.guild.id}`).run();
-      };
-      desc_entrada.eliminar(`${servidor}.lista_desc`);
-    };
-    if(desc_salida.tiene(`${servidor}.lista_desc`)){
-      let textoDesc = await desc_salida.obtener(`${servidor}.lista_desc`);
-      if(!percomdb){
-        db.prepare(`INSERT INTO personalizar_comandos(idserver, salida3_descripcion) VALUES(${message.guild.id}, '${textoDesc}')`).run();
-        percomdb = db.prepare(`SELECT * FROM personalizar_comandos WHERE idserver = ${message.guild.id}`).get();
-      }else{
-        db.prepare(`UPDATE personalizar_comandos SET salida3_descripcion = '${textoDesc}' WHERE idserver = ${message.guild.id}`).run();
-      };
-      desc_salida.eliminar(`${servidor}.lista_desc`);
-    };
-    if(goodbye_db.tiene(`${servidor}`)){
-      let canal = await goodbye_db.obtener(`${servidor}`);
-      if(!percomdb){
-        db.prepare(`INSERT INTO personalizar_comandos(idserver, canal_salida1) VALUES(${message.guild.id}, ${canal})`).run();
-        percomdb = db.prepare(`SELECT * FROM personalizar_comandos WHERE idserver = ${message.guild.id}`).get();
-      }else{
-        db.prepare(`UPDATE personalizar_comandos SET canal_salida1 = ${canal} WHERE idserver = ${message.guild.id}`).run();
-      };
-      goodbye_db.eliminar(servidor);
-    };
-    if(goodbye_db2.tiene(`${servidor}`)){
-      let canal = await goodbye_db2.obtener(`${servidor}`);
-      if(!percomdb){
-        db.prepare(`INSERT INTO personalizar_comandos(idserver, canal_salida2) VALUES(${message.guild.id}, ${canal})`).run();
-        percomdb = db.prepare(`SELECT * FROM personalizar_comandos WHERE idserver = ${message.guild.id}`).get();
-      }else{
-        db.prepare(`UPDATE personalizar_comandos SET canal_salida2 = ${canal} WHERE idserver = ${message.guild.id}`).run();
-      };
-      goodbye_db2.eliminar(servidor);
-    };
-    if(goodbye_db3.tiene(`${servidor}`)){
-      let canal = await goodbye_db3.obtener(`${servidor}`);
-      if(!percomdb){
-        db.prepare(`INSERT INTO personalizar_comandos(idserver, canal_salida3) VALUES(${message.guild.id}, ${canal})`).run();
-        percomdb = db.prepare(`SELECT * FROM personalizar_comandos WHERE idserver = ${message.guild.id}`).get();
-      }else{
-        db.prepare(`UPDATE personalizar_comandos SET canal_salida3 = ${canal} WHERE idserver = ${message.guild.id}`).run();
-      };
-      goodbye_db3.eliminar(servidor);
-    };
-    if(goodbye_db4.tiene(`${servidor}`)){
-      let canal = await goodbye_db4.obtener(`${servidor}`);
-      if(!percomdb){
-        db.prepare(`INSERT INTO personalizar_comandos(idserver, canal_salida4) VALUES(${message.guild.id}, ${canal})`).run();
-        percomdb = db.prepare(`SELECT * FROM personalizar_comandos WHERE idserver = ${message.guild.id}`).get();
-      }else{
-        db.prepare(`UPDATE personalizar_comandos SET canal_salida4 = ${canal} WHERE idserver = ${message.guild.id}`).run();
-      };
-      goodbye_db4.eliminar(servidor);
-    };
-    if(economia_act_des.tiene(servidor)){
-      if(await economia_act_des.obtener(servidor) == "on"){
-        if(!acdesdb){
-          db.prepare(`INSERT INTO activar_desactivar(idserver, economia) VALUES(${message.guild.id}, ${1})`).run();
-          acdesdb = db.prepare(`SELECT * FROM activar_desactivar WHERE idserver = ${message.guild.id}`).get();
-        }else{
-          db.prepare(`UPDATE activar_desactivar SET economia = ${1} WHERE idserver = ${message.guild.id}`).run();
-        };
-      };
-      economia_act_des.eliminar(servidor);
-    };
-    if(imagen_entrada.tiene(`${servidor}.lista_links`)){
-      let imagen = await imagen_entrada.obtener(`${servidor}.lista_links`);
-      if(!percomdb){
-        db.prepare(`INSERT INTO personalizar_comandos(idserver, entrada3_fondo) VALUES(${message.guild.id}, '${imagen}')`).run();
-        percomdb = db.prepare(`SELECT * FROM personalizar_comandos WHERE idserver = ${message.guild.id}`).get();
-      }else{
-        db.prepare(`UPDATE personalizar_comandos SET entrada3_fondo = '${imagen}' WHERE idserver = ${message.guild.id}`).run();
-      };
-      imagen_entrada.eliminar(`${servidor}.lista_links`);
-    };
-    if(imagen_salida.tiene(`${servidor}.lista_links`)){
-      let imagen = await imagen_salida.obtener(`${servidor}.lista_links`);
-      if(!percomdb){
-        db.prepare(`INSERT INTO personalizar_comandos(idserver, salida3_fondo) VALUES(${message.guild.id}, '${imagen}')`).run();
-        percomdb = db.prepare(`SELECT * FROM personalizar_comandos WHERE idserver = ${message.guild.id}`).get();
-
-      }else{
-        db.prepare(`UPDATE personalizar_comandos SET salida3_fondo = '${imagen}' WHERE idserver = ${message.guild.id}`).run();
-      };
-      imagen_salida.eliminar(`${servidor}.lista_links`);
-    };
-    if(listablanca.tiene(`${message.guild.id}`)){
-      let lbcanales = await listablanca.obtener(`${servidor}`);
-      for(var key in lbcanales) {
-        db.prepare(`INSERT INTO lista_blanca_automod(idserver, canal) VALUES(${message.guild.id}, ${lbcanales[key]})`).run();
-      };
-      listablanca.eliminar(`${servidor}`);
-    };
-    if(log.tiene(`${servidor}`)){
-      let canal = await log.obtener(`${servidor}`);
-      if(!percomdb){
-        db.prepare(`INSERT INTO personalizar_comandos(idserver, log_canal) VALUES(${message.guild.id}, ${canal})`).run();
-        percomdb = db.prepare(`SELECT * FROM personalizar_comandos WHERE idserver = ${message.guild.id}`).get();
-      }else{
-        db.prepare(`UPDATE personalizar_comandos SET log_canal = ${canal} WHERE idserver = ${message.guild.id}`).run();
-      };
-      log.eliminar(servidor);
-    };
-    if(niveles_act_des.tiene(servidor)){
-      if(await niveles_act_des.obtener(servidor) == "on"){
-        if(!acdesdb){
-          db.prepare(`INSERT INTO activar_desactivar(idserver, niveles) VALUES(${message.guild.id}, ${1})`).run();
-          acdesdb = db.prepare(`SELECT * FROM activar_desactivar WHERE idserver = ${message.guild.id}`).get();
-        }else{
-          db.prepare(`UPDATE activar_desactivar SET niveles = ${1} WHERE idserver = ${message.guild.id}`).run();
-        };
-      };
-      niveles_act_des.eliminar(servidor);
-    };
-    if(prefix_db.tiene(servidor)){
-      let prefixdb = await prefix_db.obtener(`${servidor}`);
-      if(!percomdb){
-        db.prepare(`INSERT INTO personalizar_comandos(idserver, prefix) VALUES(${message.guild.id}, '${prefixdb}')`).run();
-        percomdb = db.prepare(`SELECT * FROM personalizar_comandos WHERE idserver = ${message.guild.id}`).get();
-
-      }else{
-        db.prepare(`UPDATE personalizar_comandos SET prefix = '${prefixdb}' WHERE idserver = ${message.guild.id}`).run();
-      };
-        prefix_db.eliminar(servidor);
-    };
-    if(recompensasnivd.tiene(`${message.guild.id}`)) {
-      let roles = await recompensasnivd.obtener(`${message.guild.id}`);
-       for(var key in roles) {
-          let r = message.guild.roles.cache.get(key);
-    
-          if(!r) {
-            recompensasnivd.eliminar(`${message.guild.id}.${key}`);
-            continue;
-          };
-          if(r){
-            db.prepare(`INSERT INTO recompensas_niveles VALUES(${message.guild.id}, ${key}, ${roles[key]})`).run();
-              recompensasnivd.eliminar(`${message.guild.id}.${key}`);
-          };
-        };
-      };
-      if(rename_act_des.tiene(servidor)){
-        if(await rename_act_des.obtener(servidor) == "on"){
-          if(!acdesdb){
-            db.prepare(`INSERT INTO activar_desactivar(idserver, confignombre) VALUES(${message.guild.id}, ${1})`).run();
-            acdesdb = db.prepare(`SELECT * FROM activar_desactivar WHERE idserver = ${message.guild.id}`).get();
-
-          }else{
-            db.prepare(`UPDATE activar_desactivar SET confignombre = ${1} WHERE idserver = ${message.guild.id}`).run();
-          };
-        };
-        rename_act_des.eliminar(servidor);
-      };
-    
-      if(textosalida4.tiene(servidor)){
-      let canal = await textosalida4.obtener(`${servidor}`);
-      if(!percomdb){
-        db.prepare(`INSERT INTO personalizar_comandos(idserver, salida4_texto) VALUES(${message.guild.id}, '${canal}')`).run();
-        percomdb = db.prepare(`SELECT * FROM personalizar_comandos WHERE idserver = ${message.guild.id}`).get();
-
-      }else{
-        db.prepare(`UPDATE personalizar_comandos SET salida4_texto = '${canal}' WHERE idserver = ${message.guild.id}`).run();
-      };
-      textosalida4.eliminar(servidor)
-      };
-    
-     if(rename_emoji.tiene(servidor) || rename_ladoD.tiene(servidor) || rename_ladoE.tiene(servidor)){
-       let E = await rename_ladoE.obtener(servidor);
-       let R = await rename_ladoD.obtener(servidor);
-       let EM = await rename_emoji.obtener(servidor);
-       let decoracion = E + EM + R;
-       if(!percomdb){
-        db.prepare(`INSERT INTO personalizar_comandos(idserver, config_nombre) VALUES(${message.guild.id}, '${decoracion}')`).run();
-        percomdb = db.prepare(`SELECT * FROM personalizar_comandos WHERE idserver = ${message.guild.id}`).get();
-
-      }else{
-        db.prepare(`UPDATE personalizar_comandos SET config_nombre = '${decoracion}' WHERE idserver = ${message.guild.id}`).run();
-      };
-      rename_ladoE.eliminar(servidor)
-      rename_ladoD.eliminar(servidor)
-      rename_emoji.eliminar(servidor)
-     };
-     if(sugerencias_canal.tiene(servidor)){
-      let canal = await sugerencias_canal.obtener(`${servidor}`);
-      if(!percomdb){
-        db.prepare(`INSERT INTO personalizar_comandos(idserver, canalsugerencias) VALUES(${message.guild.id}, ${canal})`).run();
-        percomdb = db.prepare(`SELECT * FROM personalizar_comandos WHERE idserver = ${message.guild.id}`).get();
-
-      }else{
-        db.prepare(`UPDATE personalizar_comandos SET canalsugerencias = ${canal} WHERE idserver = ${message.guild.id}`).run();
-      };
-      sugerencias_canal.eliminar(servidor)
-     }
-    if(log.tiene(servidor)){
-      
-      let textoTitulo = await texto_entrada.obtener(`${servidor}.textoTitulo`);
-      if(!percomdb){
-        db.prepare(`INSERT INTO personalizar_comandos(idserver, log) VALUES(${message.guild.id}, ${textoTitulo})`).run();
-        percomdb = db.prepare(`SELECT * FROM personalizar_comandos WHERE idserver = ${message.guild.id}`).get();
-
-      }else{
-        db.prepare(`UPDATE personalizar_comandos SET log = ${textoTitulo} WHERE idserver = ${message.guild.id}`).run();
-      };
-      
-     log.eliminar(servidor)
-
-    }
-     if(texto_entrada.tiene(`${servidor}.textoTitulo`)){
-      let textoTitulo = await texto_entrada.obtener(`${servidor}.textoTitulo`);
-      if(!percomdb){
-        db.prepare(`INSERT INTO personalizar_comandos(idserver, entrada3_titulo) VALUES(${message.guild.id}, '${textoTitulo}')`).run();
-        percomdb = db.prepare(`SELECT * FROM personalizar_comandos WHERE idserver = ${message.guild.id}`).get();
-
-      }else{
-        db.prepare(`UPDATE personalizar_comandos SET entrada3_titulo = '${textoTitulo}' WHERE idserver = ${message.guild.id}`).run();
-      };
-      texto_entrada.eliminar(`${servidor}.textoTitulo`);
-    };
-    if(texto_salida.tiene(`${servidor}.textoTitulo`)){
-      let imagen = await texto_salida.obtener(`${servidor}.textoTitulo`);
-      if(!percomdb){
-        db.prepare(`INSERT INTO personalizar_comandos(idserver, salida3_titulo) VALUES(${message.guild.id}, '${imagen}')`).run();
-        percomdb = db.prepare(`SELECT * FROM personalizar_comandos WHERE idserver = ${message.guild.id}`).get();
-
-      }else{
-        db.prepare(`UPDATE personalizar_comandos SET salida3_titulo = '${imagen}' WHERE idserver = ${message.guild.id}`).run();
-      };
-      texto_salida.eliminar(`${servidor}.textoTitulo`);
-    };
-    if(textoentrada4.tiene(`${servidor}.lista_links`)){
-      let texto = await textoentrada4.obtener(`${servidor}.lista_links`);
-      if(!percomdb){
-        db.prepare(`INSERT INTO personalizar_comandos(idserver, entrada4_texto) VALUES(${message.guild.id}, '${texto}')`).run();
-        percomdb = db.prepare(`SELECT * FROM personalizar_comandos WHERE idserver = ${message.guild.id}`).get();
-
-      }else{
-        db.prepare(`UPDATE personalizar_comandos SET entrada4_texto = '${texto}' WHERE idserver = ${message.guild.id}`).run();
-      };
-      textoentrada4.eliminar(`${servidor}.lista_links`);
-    };
-    if(tienda1.tiene(`${message.guild.id}`)) {
-      let roles = await tienda1.obtener(`${message.guild.id}`)
-      for(var key in roles) {
-        console.log(key)
-        let r = message.guild.roles.cache.get(key)
-        if(r) {
-        db.prepare(`INSERT INTO tienda(idserver, idrol, precio) VALUES(${message.guild.id}, ${key}, ${roles[key]})`).run();
-      };
-          tienda1.eliminar(`${message.guild.id}.${key}`);
-    };
-  };
-  if(trabajar_max_min.tiene(`${servidor}.Max`)){
-    let max = await trabajar_max_min.obtener(`${servidor}.Max`);
-    if(!percomdb){
-      db.prepare(`INSERT INTO personalizar_comandos(idserver, trabajar_max) VALUES(${message.guild.id}, ${max})`).run();
-      percomdb = db.prepare(`SELECT * FROM personalizar_comandos WHERE idserver = ${message.guild.id}`).get();
-
-    }else{
-      db.prepare(`UPDATE personalizar_comandos SET trabajar_max = ${max} WHERE idserver = ${message.guild.id}`).run();
-    };
-  };
-  if(trabajar_max_min.tiene(`${servidor}.Min`)){
-    let min = await trabajar_max_min.obtener(`${servidor}.Min`);
-    if(!percomdb){
-      db.prepare(`INSERT INTO personalizar_comandos(idserver, trabajar_min) VALUES(${message.guild.id}, ${min})`).run();
-      percomdb = db.prepare(`SELECT * FROM personalizar_comandos WHERE idserver = ${message.guild.id}`).get();
-
-    }else{
-      db.prepare(`UPDATE personalizar_comandos SET trabajar_min = ${min} WHERE idserver = ${message.guild.id}`).run();
-    };
-    trabajar_max_min.eliminar(servidor);
-  };
-  if(trabajar_msg.tiene(`${servidor}`)){
-    let canal = await trabajar_msg.obtener(`${servidor}`);
-    if(!percomdb){
-      db.prepare(`INSERT INTO personalizar_comandos(idserver, trabajar_msg) VALUES(${message.guild.id}, '${canal}')`).run();
-      percomdb = db.prepare(`SELECT * FROM personalizar_comandos WHERE idserver = ${message.guild.id}`).get();
-
-    }else{
-      db.prepare(`UPDATE personalizar_comandos SET trabajar_msg = '${canal}' WHERE idserver = ${message.guild.id}`).run();
-    };
-    trabajar_msg.eliminar(servidor);
-  };
-  if(trabajar_tiempo.tiene(`${servidor}`)){
-    let canal = await trabajar_tiempo.obtener(`${servidor}`);
-    if(!percomdb){
-      db.prepare(`INSERT INTO personalizar_comandos(idserver, trabajar_tiempo) VALUES(${message.guild.id}, ${canal})`).run();
-      percomdb = db.prepare(`SELECT * FROM personalizar_comandos WHERE idserver = ${message.guild.id}`).get();
-    }else{
-      db.prepare(`UPDATE personalizar_comandos SET trabajar_tiempo = ${canal} WHERE idserver = ${message.guild.id}`).run();
-    };
-    trabajar_tiempo.eliminar(servidor);
-  };
-
-  };
-  if(!migraruser){
-
-
-    let servidor = message.guild.id;
-    let usuario = message.author.id;
-
-    let econdb = db.prepare(`SELECT dinero FROM economia WHERE idserver = ${servidor} AND idusuario = ${usuario}`).get();
-    let nivdb = db.prepare(`SELECT * FROM niveles WHERE idserver = ${servidor} AND idusuario = ${usuario}`).get();
-
-if(warnsdb.tiene(`${message.guild.id}.${message.author.id}.warns`)){
-  let warnsd = await warnsdb.obtener(`${message.guild.id}.${message.author.id}.warns`)
-  for(var key in warnsd) {
-    db.prepare(`INSERT INTO warns(idserver, idusuario, motivo, dia, mod) VALUES(${message.guild.id},${message.author.id}, '${warnsd[key].Motivo}', ${warnsd[key].Dia}, '${warnsd[key].Mod}')`).run();    
-  };
-  warnsdb.eliminar(`${message.guild.id}.${message.author.id}.warns`);
-};
-if(economia.tiene(`${servidor}.${usuario}`)) {
-  let cantidad = await economia.obtener(`${servidor}.${usuario}`);
-  console.log("cantidad "+cantidad)
-  if(!econdb){
-    db.prepare(`INSERT INTO economia(idserver, idusuario, dinero) VALUES(${servidor}, ${usuario}, ${cantidad})`).run();
-  }else{
-    db.prepare(`UPDATE economia SET dinero = ${cantidad} WHERE idserver = ${message.guild.id}`).run();
-  }; 
-  economia.eliminar(`${servidor}.${usuario}`);
-
-};
-if(levels_db.tiene(`${servidor}.${usuario}`)) {
-  var { xp, nivel } = await levels_db.obtener(`${servidor}.${usuario}`);
-  if(!econdb){
-    db.prepare(`INSERT INTO niveles(idserver, idusuario, xp, nivel) VALUES(${servidor}, ${usuario}, ${xp}, ${nivel})`).run();
-  }else{
-    db.prepare(`UPDATE niveles SET nivel = ${nivel} WHERE idserver = ${message.guild.id} AND idusuario = ${usuario}`).run();
-  }; 
-  levels_db.eliminar(`${servidor}.${usuario}`);
-};
-  db.prepare(`INSERT INTO dbmigrar(idserver, idusuario) VALUES(${servidor}, ${usuario})`).run();
-  };
-};
-
-  */
 
     if (command === "eval") {
         if (message.author.id !== "445334027512315915") return;
@@ -1671,11 +1004,8 @@ app
     .use("/", require("./ruta/index"))
     .use("/perfil", require("./ruta/perfil"))
     .use("/api", require("./ruta/api"))
-    //.use("/about", require("./ruta/about"))
     .use("/contribuidores", require("./ruta/contribuidores"))
     .use("/server", require("./ruta/servidor"))
-
-    //.use("/error404", require("./ruta/error"))
     .get("*", function(req, res) {
         res.redirect("/")
     });
