@@ -1,0 +1,265 @@
+*, *::before,*::after{
+    margin: 0;
+    padding: 0;
+    outline: 0;
+  
+}
+body{
+  font-family:Whitney, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;  
+  font-size: 1.2rem;
+  line-height:  1.4em;
+  margin: 0;
+
+}
+
+.colcol{
+      background-color: #181a1b;
+}
+
+.container{
+    width: 85%;
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.logo-nav-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo{
+    letter-spacing: 15px;
+    font-size: 1.4em;
+}
+
+.navigation {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.navigation li {
+    display: inline-block;
+}
+
+.navigation li a{
+    display: block;
+    padding: 0.5rem 1rem;
+    transition: all 0.4s linear;
+    border-radius: 5px;
+}
+
+.navigation li a:hover{
+    background-color: #4a4a4a;
+}
+
+.header{
+    background: #333;
+    color: white;
+    padding: 2rem 0;
+
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+}
+
+.main{
+  padding: 4rem;
+  background-color: #2C2F33;
+  color: #FFFF;
+}
+
+.barra2{
+    background-image: url(https://cdn.discordapp.com/avatars/530703322882113537/097d82648ee83778d7ae8db3146c1b4f.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    color: #FFFF;
+    text-align: center;
+    padding: 18rem;
+}
+
+.footer{
+    background: #f2f2f2;
+    text-align: center;
+    padding: 4rem 0;
+    margin-top: 6rem;
+}
+
+.header a{
+    color: white;
+    text-decoration: none;
+}
+
+h1{
+    font-size: 2rem;
+    text-align: center;
+    line-height: 1.3em;
+}
+
+hmod{
+    font-size: 5rem;
+    text-align: center;
+    line-height: 1.3em;
+}
+
+p{
+    margin: 35px 0;
+}
+
+selection{
+    width: 80%;
+    margin: 50px auto;
+}
+.contador{
+    width: 49.35%;
+    text-align: center;
+    display: inline-block;
+}
+
+.contador_cantidad {
+    font-size: 30px;
+    margin: 10px 0;
+    font-weight: 900;
+}
+
+.menu-icon{
+    display: none;
+}
+
+@keyframes aparecer {
+    0% {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.ocultar{
+    opacity: 0;
+}
+
+.animar{
+    animation: aparecer 1.3s;
+}
+
+@media only screen and (max-width: 767px) {
+    .menu-icon{
+        display: block;
+        cursor: pointer;
+    }
+
+    .navigation{
+        width: 100%;
+    }
+    .navigation ul{
+        display: none;
+    }
+    .navigation ul.show{
+        display: block;
+    }
+      
+    .navigation ul li {
+        display: block;
+      }
+      
+      .navigation ul li a {
+        display: block;
+        padding: 0.5rem 1rem;
+        transition: all 0.2s linear;
+        border-radius: 5px;
+      }
+      
+      .navigation ul li a:hover {
+        background: #cc4444;
+      }
+}
+
+	.navbar {
+  overflow: hidden;
+  background-color: #333;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+
+.navbar a.right {
+  text-align: center;
+}
+                
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.navbar a.active {
+  background-color: #666;
+  color: white;
+}
+@media screen and (max-width: 400px) {
+  .navbar a {
+    float: none;
+    width: 100%;
+  }
+}
+
+
+.barra3{
+  padding:20px;
+}
+
+.button{
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+}
+
+.button span{
+  margin-right:10px;
+}
+
+
+.button.blanco{
+  color: #2C2F33;
+  background:#FFFFFF;
+  font-weight: bold;
+
+
+}
+
+.button.azul{
+  background:#7289DA;
+  color: #FFFFFF;
+  font-weight: bold;
+
+
+}
+
+
+.button.radio{
+  border-radius:50px;
+}
